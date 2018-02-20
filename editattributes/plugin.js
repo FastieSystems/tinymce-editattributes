@@ -8,8 +8,9 @@ tinymce.PluginManager.add('editattributes', function(editor) {
 
 		for (var i = 0 ; i < selectedNode.attributes.length ; i++) {
 			var attribute = selectedNode.attributes[i];
-
-			body.push({type: 'textbox', name: attribute.name, size: 40, label: attribute.name, value: attribute.value});
+			if (!attribute.name.startsWith("data-mce-")) {
+				body.push({type: 'textbox', name: attribute.name, size: 40, label: attribute.name, value: attribute.value});
+			}
 		}
 		body.push({
 			type: 'container',
@@ -25,7 +26,7 @@ tinymce.PluginManager.add('editattributes', function(editor) {
 		});
 
 		editor.windowManager.open({
-			title: 'Edit Attributes',
+			title: 'Edit Attributes for ' + selectedNode.tagName + ' tag',
 			body: body,
 			onsubmit: function(e) {
 				editor.undoManager.transact(function() {
@@ -49,13 +50,13 @@ tinymce.PluginManager.add('editattributes', function(editor) {
 	//editor.addCommand('mceEditAttributes', showDialog);
 
 	editor.addButton('editattributes', {
-		icon: 'anchor',
+		icon: 'options', // default was anchor, options are: codesample options sun template
 		tooltip: 'Edit Attributes',
 		onclick: showDialog
 	});
 
 	editor.addMenuItem('editattributes', {
-		icon: 'anchor',
+		icon: 'options', // default was anchor, options are: codesample options sun template
 		text: 'Edit Attributes',
 		onclick: showDialog
 	});
