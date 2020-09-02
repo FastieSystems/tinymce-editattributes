@@ -2,7 +2,7 @@
 A plugin allowing editing and addition of attributes for TinyMCE 5
 
 This version of the plugin is NOT compatible with TinyMCE version 4 or earlier.
-It is only compatible with TinyMCE 5.
+**It is only compatible with TinyMCE 5.**
 
 ![Image](./docs/tinymce-attributes-5.png)
 
